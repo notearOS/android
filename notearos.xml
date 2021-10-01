@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+    <!-- Build and Core -->
+    <remove-project name="platform/build" />
+    <project name="android_build" path="build/make" remote="notearos">
+        <copyfile dest="Makefile" src="core/root.mk" />
+        <linkfile dest="build/CleanSpec.mk" src="CleanSpec.mk" />
+        <linkfile dest="build/buildspec.mk.default" src="buildspec.mk.default" />
+        <linkfile dest="build/core" src="core" />
+        <linkfile dest="build/envsetup.sh" src="envsetup.sh" />
+        <linkfile dest="build/target" src="target" />
+        <linkfile dest="build/tools" src="tools" />
+    </project>
+    <remove-project name="platform/build/soong" />
+    <project path="build/soong" name="android_build_soong" remote="notearos">
+        <linkfile dest="Android.bp" src="root.bp" />
+        <linkfile dest="bootstrap.bash" src="bootstrap.bash" />
+    </project>
+
+    <!-- Bootable -->
+    <remove-project name="platform/bootable/recovery" />
+    <project path="bootable/recovery" name="android_bootable_recovery" remote="notearos" />
+
+    <!-- Device -->
+    <remove-project name="device/qcom/common" />
+    <project path="device/qcom/common" name="android_device_qcom_common" remote="notearos">
+        <linkfile dest="vendor/qcom/build/tasks/generate_extra_images.mk" src="generate_extra_images.mk" />
+    </project>
+
+    <!-- Frameworks -->
+    <remove-project name="platform/frameworks/base" />
+    <project path="frameworks/base" name="android_frameworks_base" remote="notearos" />
+
+    <!-- Manifest -->
+    <project path="manifest" name="android" remote="notearos" />
+
+    <!-- System -->
+    <remove-project name="platform/system/core" />
+    <project path="system/core" name="android_system_core" remote="notearos" />
+    <remove-project name="platform/system/linkerconfig" />
+    <project path="system/linkerconfig" name="android_system_linkerconfig" remote="notearos" />
+
+    <!-- Vendor -->
+    <project path="vendor/notearos" name="android_vendor_notearos" remote="notearos">
+        <linkfile src="build.sh" dest="rom-build.sh" />
+    </project>
+    <project path="vendor/qcom/common" name="proprietary_vendor_qcom_common" remote="notearos" />
+    <project path="vendor/qcom/sdclang" name="ThankYouMario/proprietary_vendor_qcom_sdclang" remote="github" revision="ruby-12" />
+
+</manifest>
