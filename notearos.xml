@@ -27,6 +27,10 @@
     <project path="device/qcom/common" name="android_device_qcom_common" remote="notearos">
         <linkfile dest="vendor/qcom/build/tasks/generate_extra_images.mk" src="generate_extra_images.mk" />
     </project>
+    <remove-project name="kernel/build" />
+    <project path="device/qcom/kernelscripts" name="android_kernel_build" remote="notearos">
+        <linkfile dest="vendor/qcom/build/tasks/kernel_definitions.mk" src="kernel_definitions.mk" />
+    </project>
 
     <!-- Frameworks -->
     <remove-project name="platform/frameworks/base" />
